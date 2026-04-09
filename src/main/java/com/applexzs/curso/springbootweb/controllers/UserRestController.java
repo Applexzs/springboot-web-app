@@ -2,6 +2,7 @@ package com.applexzs.curso.springbootweb.controllers;
 
 
 import com.applexzs.curso.springbootweb.models.User;
+import com.applexzs.curso.springbootweb.models.dto.UserDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,17 @@ import java.util.Map;
 public class UserRestController {
 
     @GetMapping(path = "/details")
-    public Map<String, Object> details(){
+    public UserDto details(){
+        User user = new User("Jesus", "Luquin");
+        UserDto userDto = new UserDto();
+        userDto.setUser(user);
+        userDto.setTitle("Hola Mundo Spring Boot");
+
+        return userDto;
+    }
+
+    @GetMapping(path = "/detailsMap")
+    public Map<String, Object> detailsMap(){
         User user = new User("Jesus", "Luquin");
         Map<String, Object> body = new HashMap<>();
         body.put("title", "Hola Mundo Spring Boot");
