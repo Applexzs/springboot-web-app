@@ -3,6 +3,7 @@ package com.applexzs.curso.springbootweb.controllers;
 
 import com.applexzs.curso.springbootweb.models.User;
 import com.applexzs.curso.springbootweb.models.dto.ParamDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -11,6 +12,16 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/var")
 public class PathVariableController {
+
+    @Value("${config.username}")
+    private String username;
+//    @Value("${config.message}")
+//    private String message;
+
+    @Value("${config.listOfValues}")
+    private String[] listOfValues;
+    @Value("${config.code}")
+    private Integer code;
 
     @GetMapping("/baz/{message}")
     public ParamDto baz(@PathVariable String message){
@@ -32,5 +43,15 @@ public class PathVariableController {
         //Hacer algo con el usuario
         user.setName(user.getName().toUpperCase());
         return user;
+    }
+
+    @GetMapping("/values")
+    public Map<String, Object> values(@Value("${config.message}") String message){
+        Map<String, Object> json = new HashMap<>();
+        json.put("username", username);
+        json.put("message", message);
+        json.put("code", code);
+        json.put("listOfValues", listOfValues);
+        return json;
     }
 }
