@@ -2,6 +2,7 @@ package com.applexzs.curso.springbootweb.controllers;
 
 
 import com.applexzs.curso.springbootweb.models.dto.ParamDto;
+import com.applexzs.curso.springbootweb.models.dto.ParamMixDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,12 @@ public class RequestParamController {
         return param;
     }
 
-
+    @GetMapping("/bar")
+    public ParamMixDto bar(@RequestParam String text, @RequestParam Integer code){
+        ParamMixDto params = new ParamMixDto();
+        params.setMessage(text);
+        params.setCode(code);
+        return params;
+    }
 
 }
