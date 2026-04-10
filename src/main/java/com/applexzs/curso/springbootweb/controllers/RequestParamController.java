@@ -15,7 +15,7 @@ public class RequestParamController {
 
 
     @GetMapping("/foo")
-    public ParamDto foo(@RequestParam(required = false, defaultValue = "Hola que tal", name = "mensaje") String message){
+    public ParamDto foo(@RequestParam(required = false, defaultValue = "Hola que tal") String message){
         ParamDto param = new ParamDto();
         param.setMessage(message);
         return param;
